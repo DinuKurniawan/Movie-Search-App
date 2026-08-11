@@ -40,3 +40,23 @@ export async function getPopular(type = 'movie', page = 1) {
   const { data } = await api.get(endpoint, { params: { page } })
   return data
 }
+
+// Film/serial yang sedang trending minggu ini
+export async function getTrending() {
+  const { data } = await api.get('/trending/all/week')
+  return data
+}
+
+// Daftar genre film (untuk dropdown filter)
+export async function getGenres() {
+  const { data } = await api.get('/genre/movie/list', { params: { language: 'id-ID' } })
+  return data
+}
+
+// Film populer per genre (dipakai saat dropdown genre terpilih)
+export async function getDiscover({ genre, page = 1 }) {
+  const { data } = await api.get('/discover/movie', {
+    params: { with_genres: genre, sort_by: 'popularity.desc', page },
+  })
+  return data
+}

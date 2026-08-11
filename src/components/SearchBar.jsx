@@ -19,7 +19,7 @@ export default function SearchBar({ value, onChange, onClear }) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="Cari judul film, serial, atau orang..."
-        className="w-full rounded-full border border-slate-700 bg-slate-900/70 py-3 pr-12 pl-12 text-slate-100 placeholder-slate-500 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/40"
+        className="w-full rounded-full border border-base-700 bg-base-900/80 py-3.5 pr-12 pl-12 text-slate-100 placeholder-slate-500 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/40"
       />
       {value && (
         <button

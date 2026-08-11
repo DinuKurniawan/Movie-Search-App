@@ -11,21 +11,26 @@ export default function MovieCard({ item, onClick }) {
     <button
       type="button"
       onClick={() => onClick(item)}
-      className="group flex flex-col overflow-hidden rounded-xl border border-slate-800 bg-slate-900 text-left transition hover:-translate-y-1 hover:border-blue-500/60 hover:shadow-lg hover:shadow-blue-500/10"
+      className="group flex w-full flex-col overflow-hidden rounded-xl border border-base-700 bg-base-900 text-left transition hover:-translate-y-1 hover:border-brand-500/60 hover:shadow-xl hover:shadow-brand-500/10"
     >
-      <div className="relative aspect-[2/3] w-full overflow-hidden bg-slate-800">
+      <div className="relative aspect-[2/3] w-full overflow-hidden bg-base-800">
         {poster ? (
           <img
             src={poster}
             alt={title}
             loading="lazy"
-            className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+            className="h-full w-full object-cover transition duration-300 group-hover:scale-110"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center p-4 text-center text-sm text-slate-500">
             {title}
           </div>
         )}
+        <div className="absolute inset-0 flex items-center justify-center bg-base-950/60 opacity-0 transition group-hover:opacity-100">
+          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-500 text-white shadow-lg shadow-brand-500/40 transition group-hover:scale-110">
+            ▶
+          </span>
+        </div>
         {rating != null && (
           <span className="absolute top-2 right-2 rounded-full bg-black/70 px-2 py-1 text-xs font-semibold text-amber-400 backdrop-blur">
             ★ {rating}

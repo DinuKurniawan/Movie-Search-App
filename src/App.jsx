@@ -5,6 +5,8 @@ import FilterBar from './components/FilterBar'
 import MovieGrid, { SkeletonGrid } from './components/MovieGrid'
 import Pagination from './components/Pagination'
 import MovieDetail from './components/MovieDetail'
+import Hero from './components/Hero'
+import TrendingRow from './components/TrendingRow'
 
 export default function App() {
   const {
@@ -14,6 +16,8 @@ export default function App() {
     setType,
     year,
     setYear,
+    genre,
+    setGenre,
     page,
     setPage,
     results,
@@ -23,16 +27,20 @@ export default function App() {
     error,
     selected,
     setSelected,
+    trending,
+    genres,
   } = useMovies()
 
   const noToken = !hasApiToken()
+  const showHero = !query && !genre && trending.length > 0
+  const heroItem = showHero ? trending[0] : null
 
   return (
-    <div className="min-h-screen bg-slate-950">
-      <header className="sticky top-0 z-40 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4">
-          <h1 className="text-xl font-bold text-white">
-            🎬 <span className="text-blue-500">Cinema</span> Search
+    <div className="min-h-screen bg-base-950">
+      <header className="sticky top-0 z-40 border-b border-base-800/80 bg-base-950/80 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3.5">
+          <h1 className="font-display text-3xl leading-none tracking-wide text-white">
+            <span className="text-brand-500">CINEMA</span> SEARCH
           </h1>
           {query && (
             <p className="hidden text-sm text-slate-400 sm:block">
@@ -42,6 +50,8 @@ export default function App() {
           )}
         </div>
       </header>
+
+      {heroItem && <Hero item={heroItem} onSelect={setSelected} />}
 
       <main className="mx-auto max-w-7xl px-4 py-8">
         {noToken && (
@@ -70,8 +80,20 @@ export default function App() {
             setType={setType}
             year={year}
             setYear={setYear}
+            genre={genre}
+            setGenre={setGenre}
+            genres={genres}
+            query={query}
           />
         </div>
+
+        {showHero && (
+          <TrendingRow
+            items={trending}
+            baseType={type}
+            onSelect={setSelected}
+          />
+        )}
 
         {error && (
           <div className="mb-6 rounded-xl border border-red-500/40 bg-red-500/10 p-4 text-sm text-red-300">
@@ -103,7 +125,7 @@ export default function App() {
         />
       )}
 
-      <footer className="border-t border-slate-800/80 py-6 text-center text-xs text-slate-500">
+      <footer className="border-t border-base-800/80 py-6 text-center text-xs text-slate-500">
         Data dari The Movie Database (TMDB) — dibuat dengan React &amp; Tailwind CSS
       </footer>
     </div>

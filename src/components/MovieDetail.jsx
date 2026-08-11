@@ -49,7 +49,7 @@ export default function MovieDetail({ item, baseType, onClose }) {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true">
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
 
-      <div className="relative z-10 max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl border border-slate-700 bg-slate-900 shadow-2xl">
+      <div className="relative z-10 max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl border border-base-700 bg-base-900 shadow-2xl">
         <div className="relative">
           {backdrop ? (
             <img
@@ -58,9 +58,9 @@ export default function MovieDetail({ item, baseType, onClose }) {
               className="h-56 w-full object-cover sm:h-72"
             />
           ) : (
-            <div className="h-40 w-full bg-gradient-to-br from-slate-800 to-slate-900 sm:h-52" />
+            <div className="h-40 w-full bg-gradient-to-br from-base-800 to-base-900 sm:h-52" />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-base-900 via-base-900/40 to-transparent" />
 
           <button
             type="button"
@@ -76,9 +76,9 @@ export default function MovieDetail({ item, baseType, onClose }) {
 
         {status === 'loading' && (
           <div className="space-y-3 p-6">
-            <div className="h-6 w-2/3 animate-pulse rounded bg-slate-800" />
-            <div className="h-4 w-1/2 animate-pulse rounded bg-slate-800" />
-            <div className="h-24 w-full animate-pulse rounded bg-slate-800" />
+            <div className="h-6 w-2/3 animate-pulse rounded bg-base-800" />
+            <div className="h-4 w-1/2 animate-pulse rounded bg-base-800" />
+            <div className="h-24 w-full animate-pulse rounded bg-base-800" />
           </div>
         )}
 
@@ -90,7 +90,7 @@ export default function MovieDetail({ item, baseType, onClose }) {
               <img
                 src={poster}
                 alt={detail.title || detail.name}
-                className="mx-auto h-64 w-44 shrink-0 rounded-xl border border-slate-700 object-cover sm:mx-0"
+                className="mx-auto h-64 w-44 shrink-0 rounded-xl border border-base-700 object-cover sm:mx-0"
               />
               <div>
                 <h2 className="text-2xl font-bold text-white">
@@ -117,7 +117,7 @@ export default function MovieDetail({ item, baseType, onClose }) {
                 {detail.genres?.length > 0 && (
                   <div className="mt-3 flex flex-wrap gap-2">
                     {detail.genres.map((g) => (
-                      <span key={g.id} className="rounded-full border border-slate-700 px-2.5 py-0.5 text-xs text-slate-300">
+                      <span key={g.id} className="rounded-full border border-base-700 px-2.5 py-0.5 text-xs text-slate-300">
                         {g.name}
                       </span>
                     ))}
@@ -145,7 +145,7 @@ export default function MovieDetail({ item, baseType, onClose }) {
                           className="h-10 w-10 rounded-full object-cover"
                         />
                       ) : (
-                        <div className="h-10 w-10 rounded-full bg-slate-800" />
+                        <div className="h-10 w-10 rounded-full bg-base-800" />
                       )}
                       <div className="min-w-0">
                         <p className="truncate text-sm text-slate-200">{c.name}</p>
@@ -162,7 +162,7 @@ export default function MovieDetail({ item, baseType, onClose }) {
                 href={`https://www.youtube.com/watch?v=${detail.videos.results[0].key}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-red-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-red-500"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2 text-sm font-semibold text-white transition hover:bg-brand-400"
               >
                 ▶ Tonton Trailer
               </a>
