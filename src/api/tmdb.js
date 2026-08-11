@@ -36,6 +36,7 @@ export async function getDetail(id, type = 'movie') {
 
 // Daftar film populer (untuk landing tanpa keyword)
 export async function getPopular(type = 'movie', page = 1) {
-  const { data } = await api.get(`/${type}/popular`, { params: { page } })
+  const endpoint = type === 'multi' ? '/trending/all/week' : `/${type}/popular`
+  const { data } = await api.get(endpoint, { params: { page } })
   return data
 }
