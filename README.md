@@ -9,9 +9,10 @@ Aplikasi pencarian film berbasis web yang dibangun dengan **React**, **Tailwind 
 - Filter tahun rilis
 - Pagination (Sebelumnya / Berikutnya)
 - Detail lengkap dalam modal (overview, rating, genre, pemain utama, trailer)
-- Tampilan awal menampilkan daftar film populer
+- Tampilan awal menampilkan daftar film populer (tab "Semua" memakai `/trending/all/week`)
 - Grid responsif dengan skeleton loading saat memuat data
 - Dark theme
+- Ter-deploy di GitHub Pages dengan custom domain
 
 ## Tech Stack
 
@@ -65,6 +66,20 @@ npm run dev
 ```
 
 Buka **http://localhost:5173** di browser.
+
+## Deploy ke GitHub Pages
+
+App ini di-deploy otomatis ke GitHub Pages melalui GitHub Actions (`.github/workflows/deploy.yml`) saat ada push ke `main`. Live: <https://moviesearchapp.codeunchs.my.id>
+
+Poin penting:
+
+- `vite.config.js` memakai `base: '/'` karena disajikan di root custom domain.
+- Workflow membangun dari `dist/` lalu meng-upload artifact ke GitHub Pages — pastikan di **Settings → Pages → Build and deployment** source-nya **"GitHub Actions"**, bukan "Deploy from a branch".
+- Custom domain diatur di **Settings → Pages → Custom domain**.
+- Token API dibaca dari GitHub Actions secret `VITE_TMDB_API_TOKEN` (bukan dari `.env` lokal):
+  1. **Settings → Secrets and variables → Actions → New repository secret**
+  2. Nama: `VITE_TMDB_API_TOKEN`, isi dengan API Read Access Token TMDB.
+- Setelah secret ditambahkan, trigger ulang workflow **"Deploy to GitHub Pages"** agar token ikut ter-bundle.
 
 ## Build Produksi
 
